@@ -193,7 +193,7 @@ function init() {
 
 
     //Clouds
-    cloudsTexture = new THREE.TextureLoader().load('/public/images/fx_cloudalpha05.png');
+    cloudsTexture = new THREE.TextureLoader().load('https://ilyaly.github.io/enoa-khanid-interactive-map/public/images/fx_cloudalpha05.png');
     cloudsTexture.wrapS = THREE.RepeatWrapping;
     cloudsTexture.wrapT = THREE.RepeatWrapping;
     const planeGeometry = new THREE.PlaneGeometry(10000, 10000, 10, 10);
@@ -405,7 +405,7 @@ function loadSite(
     //Load model
     if (site.model) {
         let model;
-        modelLoader.load(`/enoa-khanid-interactive-map/public/models/${site.model}`, (gltf) => {
+        modelLoader.load(`https://ilyaly.github.io/enoa-khanid-interactive-map/public/models/${site.model}`, (gltf) => {
             model = gltf.scene;
             /*
             const toonMaterial = new THREE.MeshToonMaterial();
@@ -431,7 +431,7 @@ function loadSite(
     if (site.sound) {
         const sound = new THREE.PositionalAudio(audioListener);
 
-        audioLoader.load(`/enoa-khanid-interactive-map/public/sounds/${site.sound}`, function(buffer) {
+        audioLoader.load(`https://ilyaly.github.io/enoa-khanid-interactive-map/public/sounds/${site.sound}`, function(buffer) {
             sound.setBuffer(buffer);
             sound.setLoop(true);
             sound.setRolloffFactor(1);
