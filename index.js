@@ -334,7 +334,7 @@ function init() {
     const audioLoader = new THREE.AudioLoader(loadingManager);
 
     //Load data
-    const request = new Request("/public/sites.json");
+    const request = new Request("https://ilyaly.github.io/enoa-khanid-interactive-map/public/sites.json");
     fetch(request)
         .then((response) => response.json())
 
