@@ -1,0 +1,286 @@
+/*
+:root {
+  --textColor: #1e90ff;
+  --hrContent: "ਬਾਸੁਨ"; 
+}
+*/
+
+
+* {
+    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Forum', serif;
+    font-family: 'Noto Serif Display', serif;
+    font-family: 'Playfair Display', serif;
+}
+
+body {
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: Monospace;
+    font-size: 16px;
+    line-height: 24px;
+    overscroll-behavior: none;
+
+}
+
+a {
+    color: #8096c1;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+
+
+a,
+button,
+input,
+select {
+    pointer-events: auto;
+}
+
+.label {
+    text-shadow: -1px 1px 1px rgb(0, 0, 0);
+    font-size: 16px;
+    color: #c8aa6e;
+}
+
+
+
+#overlay {
+    position: absolute;
+    font-size: 16px;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 1);
+    transition: 2s ease-out;
+}
+
+#overlay h1 {
+    font-size: 64px;
+}
+
+
+
+#overlay button {
+    border: 0;
+    border: 1px solid #c8aa6e;
+    background: rgba(0, 0, 0, 0.7);
+    color: #c8aa6e;
+    padding: 12px 18px;
+    font-size: 24px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 1s ease-in-out;
+}
+
+#overlay button:disabled {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+
+#overlay button:hover {
+    border: 1px solid #ff7100;
+    box-shadow: 0 0 8px #ff7100;
+    text-shadow: 0 0 8px #ff7100;
+}
+
+#sidebar {
+    height: 100%;
+    width: 350px;
+    position: fixed;
+    top: 0;
+    right: -370px;
+    background-color: #000000;
+    color: #c7b580;
+    transition: right 1.5s .5s;
+    /*overflow-x: hidden;*/
+    overflow: visible;
+    padding: 20px;
+    z-index: 2;
+}
+
+#sidebar-button {
+    font-size: 90px;
+    position: absolute;
+    right: 349px;
+    color: black;
+    top: 76px;
+}
+
+#sidebar-button:hover {
+    text-shadow: 0 0 8px #ff7100;
+    cursor: pointer;
+}
+
+
+#sidebar-content {
+    margin: 8px;
+    margin-bottom: 32px;
+}
+
+#sidebar-content-text {
+    font-family: 'Forum', serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #a09b8c;
+}
+
+#sidebar-content img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+
+#sidebar-content h1 {
+    color: #c8aa6e;
+}
+
+#sidebar-content h1:before {
+    background: #fff0;
+    font-size: 24px;
+    content: '◈';
+    padding: 0 4px;
+    position: relative;
+}
+
+
+
+hr {
+    border: none;
+    border-top: 3px double #333;
+    color: #c8aa6e;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
+
+hr:before {
+    background: #fff0;
+    font-size: 12px;
+    content: var(--hrContent);
+    padding: 0 4px;
+    position: relative;
+    top: -14px;
+}
+
+/*
+hr:after {
+  background: #fff0;
+  content: 'ཏ';
+  padding: 0 4px;
+  position: relative;
+  top: -13px;
+}
+*/
+
+br {
+    display: block;
+    border: none;
+    height: 8px;
+}
+
+
+#logo {
+    background-color: #3330;
+    padding: 20px 20px;
+    
+    border: none;
+    cursor: pointer;
+    font-size: 32px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+    margin: 8px;
+    transition: 1s ease-in-out;
+    
+}
+
+#logo a {
+	color: #c8aa6e;
+	
+	text-decoration: none;
+}
+
+#logo:hover {
+    text-shadow: 0 0 16px #ff7100;
+}
+
+.loader {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    background-color: rgba(0, 0, 0, 0.5);
+    transform: rotate(45deg);
+    overflow: hidden;
+    margin-bottom: 32px;
+}
+
+.loader:after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    margin: auto;
+    background: #000000;
+}
+
+.loader:before {
+    content: 'T';
+    position: absolute;
+    inset: -15px;
+    margin: auto;
+    background: #c8aa6e;
+    animation: diamondLoader 2s linear infinite;
+}
+
+@keyframes diamondLoader {
+
+    0%,
+    10% {
+        transform: translate(-64px, -64px) rotate(-45deg)
+    }
+
+    90%,
+    100% {
+        transform: translate(0px, 0px) rotate(-45deg)
+    }
+}
+
+/* DAY NIGHT TOGLE */
+
+#day-night-switch{
+	bottom: 0;
+    left: 0;
+    position: fixed;
+    color: #c8aa6e;
+    z-index: 2;
+    font-size: 64px;
+    margin: 8px;
+    padding: 20px 20px;
+    transition: 1s ease-in-out;
+}
+
+#day-night-switch:hover{
+	cursor: pointer;
+	text-shadow: 0 0 16px #ff7100;
+}
