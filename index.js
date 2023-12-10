@@ -19,28 +19,6 @@ import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer
 //Animation
 import { gsap } from 'https://cdn.skypack.dev/gsap@3.9.0';
 
-// TO DO
-
-//https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.displacementMap
-
-//Water
-//https://threejs.org/examples/webgl_water_flowmap.html
-
-// Snow
-// https://codepen.io/tksiiii/pen/MRjWzv
-
-//Hover
-//https://threejs.org/examples/?q=intera#webgl_interactive_cubes
-
-//Caravan
-//https://threejs.org/examples/#webgl_modifier_curve
-
-//Font 
-//https://threejs.org/examples/?q=text#webgl_geometry_text
-//https://threejs.org/examples/?q=text#webgl_geometry_text_shapes
-//https://threejs.org/examples/?q=text#webgl_geometry_text_stroke
-//https://threejs.org/examples/?q=text#webgl_loader_ttf
-
 //Basics
 let scene, camera, renderer, labelRenderer, controls;
 
@@ -183,23 +161,7 @@ function init() {
     //const hL = scene.add(new THREE.HemisphereLight(0xffffbb, 0x080820, 1));
     //hL.position.set(0, 0, 0)
     const d = 100;
-    /*
-    let light = new THREE.DirectionalLight(0xffffff, 0.5);
-    light.position.set(0, 700, 0);
-    light.castShadow = true;
-    light.shadow.mapSize.width = 1024;
-    light.shadow.mapSize.height = 1024;
-
-    ;
-
-    light.shadow.camera.left = -d;
-    light.shadow.camera.right = d;
-    light.shadow.camera.top = d;
-    light.shadow.camera.bottom = -d;
-    light.shadow.camera.far = 2000;
-
-    scene.add(light);
-    */
+   
     sun = new THREE.Group();
 
     let light_2 = new THREE.DirectionalLight(0xFCE570, 1);
@@ -240,9 +202,6 @@ function init() {
     cloudsPlane.position.set(0, 1000, 0);
     cloudsPlane.rotation.x = -1.57079633;
     scene.add(cloudsPlane);
-
-
-
 
     // postprocessing
 
@@ -446,7 +405,7 @@ function loadSite(
     //Load model
     if (site.model) {
         let model;
-        modelLoader.load(`/public/models/${site.model}`, (gltf) => {
+        modelLoader.load(`/enoa-khanid-interactive-map/public/models/${site.model}`, (gltf) => {
             model = gltf.scene;
             /*
             const toonMaterial = new THREE.MeshToonMaterial();
@@ -472,7 +431,7 @@ function loadSite(
     if (site.sound) {
         const sound = new THREE.PositionalAudio(audioListener);
 
-        audioLoader.load(`/public/sounds/${site.sound}`, function(buffer) {
+        audioLoader.load(`/enoa-khanid-interactive-map/public/sounds/${site.sound}`, function(buffer) {
             sound.setBuffer(buffer);
             sound.setLoop(true);
             sound.setRolloffFactor(1);
