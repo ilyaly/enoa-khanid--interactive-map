@@ -68,7 +68,8 @@ select {
     justify-content: center;
     flex-direction: column;
     background: rgba(0, 0, 0, 1);
-    transition: 2s ease-out;
+    transition: 1s ease-out;
+    
 }
 
 #overlay h1 {
