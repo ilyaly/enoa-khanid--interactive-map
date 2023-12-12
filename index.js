@@ -363,9 +363,7 @@ function loadSite(
     audioListener
 
 ) {
-    if (!site.model) {
-        return
-    };
+
 
 
     //Creat site group
@@ -402,39 +400,27 @@ function loadSite(
         let model;
         modelLoader.load(`${basePath}public/models/${site.model}`, (gltf) => {
             model = gltf.scene;
-            /*
-            const toonMaterial = new THREE.MeshToonMaterial();
-            model.traverse((node) => {
-                if (node.isMesh) {
-                    toonMaterial.emissiveMap = node.material.map;
-                    node.material = toonMaterial;
-                }
-            });
-            */
             group.add(model);
         });
 
     } else if (site.type !== "terrain") {
-        const geometry = new THREE.BoxGeometry(10, 10, 10);
-        const material = new THREE.MeshBasicMaterial({ color: 0x000000 });
-        const cube = new THREE.Mesh(geometry, material);
-        group.add(cube);
+        let model;
+        modelLoader.load(`${basePath}public/models/poi-flag.glb`, (gltf) => {
+            model = gltf.scene;
+            group.add(model);
+        });
     }
 
 
     // Load sound
     if (site.sound) {
         const sound = new THREE.PositionalAudio(audioListener);
-
         audioLoader.load(`${basePath}public/sounds/${site.sound}`, function(buffer) {
             sound.setBuffer(buffer);
             sound.setLoop(true);
             sound.setRolloffFactor(4);
-            //sound.setDistanceModel("linear")
             sound.setRefDistance(500); 
-            //sound.setMaxDistance(1500);
             sound.setVolume(0.5);
-            //sound.play();
             group.add(sound);
         });
     }
