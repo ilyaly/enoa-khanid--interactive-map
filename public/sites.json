@@ -377,7 +377,7 @@
         "layer": 1,
         "type": "city",
         "province": "Хурхон",
-        "link": null,
+        "link": "https://enoa.fandom.com/ru/wiki/%D0%9D%D1%83%D1%83%D1%80%D0%B3%D0%B0%D0%BD",
         "sound": "kargyraa.mp3",
         "model": "nuurgan-urt.glb",
         "position": [
