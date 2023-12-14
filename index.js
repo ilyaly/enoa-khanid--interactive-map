@@ -386,7 +386,7 @@ function init() {
     let placeModel;
     modelLoader.load(`${basePath}/public/models/poi-flag.glb`, (gltf) => {
         placeModel = gltf.scene;
-        const placesRequest = new Request(`${basePath}public/places.json`);
+        const placesRequest = new Request(`${basePath}/public/places.json`);
         fetch(placesRequest)
             .then((response) => response.json())
             .then((places) => {
