@@ -6,6 +6,7 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
 import { OutlinePass } from 'three/addons/postprocessing/OutlinePass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { FXAAShader } from 'three/addons/shaders/FXAAShader.js';
 import { OutlineEffect } from 'three/addons/effects/OutlineEffect.js';
 //Loaders
@@ -140,6 +141,9 @@ function init() {
     outlinePass.edgeGlow = 0.5;
     outlinePass.edgeThickness = 1;
     composer.addPass(outlinePass);
+
+    const outputPass = new OutputPass();
+    composer.addPass(outputPass);
 
     effectFXAA = new ShaderPass(FXAAShader);
     effectFXAA.uniforms['resolution'].value.set(1 / window.innerWidth, 1 / window.innerHeight);
