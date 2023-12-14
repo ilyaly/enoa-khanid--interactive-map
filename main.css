@@ -69,7 +69,7 @@ select {
     flex-direction: column;
     background: rgba(0, 0, 0, 1);
     transition: 1s ease-out;
-    
+
 }
 
 #overlay h1 {
@@ -88,12 +88,10 @@ select {
     text-transform: uppercase;
     cursor: pointer;
     transition: 1s ease-in-out;
+    opacity: 0%;
 }
 
-#overlay button:disabled {
-    opacity: 0.5;
-    cursor: pointer;
-}
+
 
 
 #overlay button:hover {
@@ -107,15 +105,18 @@ select {
     width: 350px;
     position: fixed;
     top: 0;
-    right: -370px;
+    right: -390px;
     background-color: #000000;
     color: #c7b580;
     transition: right 1.5s .5s;
-    /*overflow-x: hidden;*/
-    overflow: visible;
+    overflow: auto;
     padding: 20px;
     z-index: 2;
 }
+
+.sidebar-expanded {}
+
+.sidebar-collased {}
 
 #sidebar-button {
     font-size: 90px;
@@ -203,7 +204,7 @@ br {
 #logo {
     background-color: #3330;
     padding: 20px 20px;
-    
+
     border: none;
     cursor: pointer;
     font-size: 32px;
@@ -213,13 +214,13 @@ br {
     z-index: 3;
     margin: 8px;
     transition: 1s ease-in-out;
-    
+
 }
 
 #logo a {
-	color: #c8aa6e;
-	
-	text-decoration: none;
+    color: #c8aa6e;
+
+    text-decoration: none;
 }
 
 #logo:hover {
@@ -268,8 +269,8 @@ br {
 
 /* DAY NIGHT TOGLE */
 
-#day-night-switch{
-	bottom: 0;
+#day-night-switch {
+    bottom: 0;
     left: 0;
     position: fixed;
     color: #c8aa6e;
@@ -280,7 +281,48 @@ br {
     transition: 1s ease-in-out;
 }
 
-#day-night-switch:hover{
-	cursor: pointer;
-	text-shadow: 0 0 16px #ff7100;
+#day-night-switch:hover {
+    cursor: pointer;
+    text-shadow: 0 0 16px #ff7100;
+}
+
+/* Responsive */
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 16px;
+        line-height: 24px;
+    }
+
+    #overlay h1 {
+        font-size: 32px;
+    }
+
+    #overlay button {
+        font-size: 16px;
+    }
+
+    #logo {
+        font-size: 24px;
+    }
+
+    #sidebar {
+        height: 300px;
+        position: fixed;
+        bottom: 0;
+        background-color: rgb(0 0 0);
+        color: #c7b580;
+        transition: right 1.5s .5s;
+        padding: 20px;
+        z-index: 2;
+        overflow: auto;
+        top: auto;
+        width: fit-content;
+    }
+
+    #sidebar-content h1 {
+        font-size: 1.5 em;
+    }
+
+
 }
