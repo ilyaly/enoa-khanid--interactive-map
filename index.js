@@ -272,7 +272,7 @@ function init() {
 
     //Add terrain
     let terrainModel;
-    modelLoader.load(`${basePath}public/models/hanid-terrain.glb`, (gltf) => {
+    modelLoader.load(`${basePath}/public/models/hanid-terrain.glb`, (gltf) => {
         terrainModel = gltf.scene;
         const group = new THREE.Group();
         group.name = "Terrain";
@@ -384,7 +384,7 @@ function init() {
     // As we use one model for all points of interest it is better to load model once 
     // and than use just copy it
     let placeModel;
-    modelLoader.load(`${basePath}public/models/poi-flag.glb`, (gltf) => {
+    modelLoader.load(`${basePath}/public/models/poi-flag.glb`, (gltf) => {
         placeModel = gltf.scene;
         const placesRequest = new Request(`${basePath}public/places.json`);
         fetch(placesRequest)
