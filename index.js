@@ -108,9 +108,9 @@ function init() {
     });
 
     // Light
-    ambientLight = scene.add(new THREE.AmbientLight(0x5c9fbc, 2));
+    ambientLight = scene.add(new THREE.AmbientLight(0x5c9fbc, 0.5));
     sun = new THREE.Group();
-    let directionalLight = new THREE.DirectionalLight(0xFCE570, 2);
+    let directionalLight = new THREE.DirectionalLight(0xFCE570, 1);
     const d = 10000;
     directionalLight.position.set(0, 1000, 0);
     directionalLight.castShadow = true;
@@ -508,7 +508,7 @@ dayNightSwitch.addEventListener('click', function() {
     }
     if (isDay) {
         dayNightSwitch.innerHTML = "☾";
-        ambientLight.intensity = 1;
+        ambientLight.intensity = 0.5;
         gsap.to(sun.rotation, {
             duration: 7,
             x: 0,
@@ -520,7 +520,7 @@ dayNightSwitch.addEventListener('click', function() {
         isDay = false;
     } else {
         dayNightSwitch.innerHTML = "☉";
-        ambientLight.intensity = 2;
+        ambientLight.intensity = 1;
         gsap.to(sun.rotation, {
             duration: 7,
             x: 0,
