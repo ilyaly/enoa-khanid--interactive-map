@@ -49,17 +49,6 @@ let ambientLight;
 
 //Flight 
 let flight;
-window.addEventListener("onmousedown", (event) => {
-    if (flight) {
-        flight.kill();
-    }
-})
-
-window.addEventListener("wheel", (event) => {
-    if (flight) {
-        flight.kill();
-    }
-})
 
 
 init();
@@ -69,18 +58,18 @@ render();
 function init() {
     //Scene
     scene = new THREE.Scene();
-
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000);
     //Renderer
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.antialias = true;
-    
+
     document.body.appendChild(renderer.domElement);
 
     //Camera
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 5000);
+
     camera.position.set(0, 4000, 0)
     camera.rotation.set(0, -0.45, 0)
 
@@ -110,22 +99,21 @@ function init() {
     // Light
     ambientLight = scene.add(new THREE.AmbientLight(0x5c9fbc, 0.5));
     sun = new THREE.Group();
-    let directionalLight = new THREE.DirectionalLight(0xFCE570, 1);
-    const d = 10000;
-    directionalLight.position.set(0, 1000, 0);
-    directionalLight.castShadow = true;
-    directionalLight.shadow.mapSize.width = 1024;
-    directionalLight.shadow.mapSize.height = 1024;
-
-
-    directionalLight.shadow.camera.left = -d;
-    directionalLight.shadow.camera.right = d;
-    directionalLight.shadow.camera.top = d;
-    directionalLight.shadow.camera.bottom = -d;
-    directionalLight.shadow.camera.far = 5000;
-    sun.add(directionalLight);
+    let dLight = new THREE.DirectionalLight(0xFCE570, 1);
+    sun.add(dLight);
     scene.add(sun);
     sun.rotation.z = Math.PI / 5;
+
+    dLight.castShadow = true;
+    dLight.shadow.mapSize.width = 1024;
+    dLight.shadow.mapSize.height = 1024;
+
+    dLight.shadow.camera.near = 0.5; // default
+    dLight.shadow.camera.far = 2500; // default
+
+    //Fog
+    scene.fog = new THREE.FogExp2(0x000000, 0.00025);
+
 
     //Audio
     audioListener = new THREE.AudioListener();
@@ -137,9 +125,9 @@ function init() {
     composer.addPass(renderPass);
 
     outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), scene, camera);
-    outlinePass.edgeStrength = 3;
-    outlinePass.edgeGlow = 0.5;
-    outlinePass.edgeThickness = 1;
+    outlinePass.edgeStrength = 5;
+    outlinePass.edgeGlow = 0.0;
+    outlinePass.edgeThickness = 2;
     composer.addPass(outlinePass);
 
     const outputPass = new OutputPass();
@@ -154,12 +142,25 @@ function init() {
     renderer.domElement.style.touchAction = 'none';
     renderer.domElement.addEventListener('pointermove', onPointerMove);
     renderer.domElement.addEventListener('click', onMouseClick);
+    renderer.domElement.addEventListener("pointerdown", (event) => {
+        if (flight) {
+            flight.kill();
+        }
+    });
+
+    renderer.domElement.addEventListener("wheel", (event) => {
+        if (flight) {
+            flight.kill();
+        }
+    });
+
 
     //Loaders
     const loadingManager = new THREE.LoadingManager();
     loadingManager.onLoad = function() {
         isSceneLoaded = true;
         overlay.style.opacity = '50%';
+        loader.style.opacity = "0%"
         playButton.style.opacity = "100%";
     };
     const modelLoader = new GLTFLoader(loadingManager);
@@ -412,7 +413,7 @@ function init() {
                     );
                     group.rotation.set(
                         place.rotation[0],
-                        place.rotation[1] += Math.random(),
+                        place.rotation[1] += Math.random() * 2,
                         place.rotation[2]
                     );
                     group.scale.set(
@@ -473,6 +474,7 @@ function render() {
 
 //GUI
 const overlay = document.getElementById('overlay');
+const loader = document.getElementById('diamond-loader');
 const playButton = document.getElementById('playButton')
 const dayNightSwitch = document.getElementById('day-night-switch');
 const sidebar = document.getElementById('sidebar');
@@ -487,7 +489,7 @@ playButton.addEventListener('click', function() {
     overlay.style.pointerEvents = "none";
     playButton.style.pointerEvents = "none";
 
-    gsap.to(camera.position, {
+    flight = gsap.to(camera.position, {
         duration: 3,
         x: 0,
         y: 2300,
