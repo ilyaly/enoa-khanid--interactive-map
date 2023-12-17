@@ -303,7 +303,7 @@
         "province": "Бралл",
         "link": null,
         "sound": "djembe.ogg",
-        "model": null,
+        "model": "mer-gates.glb",
         "position": [
             190,
             -59,
