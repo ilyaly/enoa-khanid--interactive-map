@@ -112,7 +112,7 @@ function init() {
     dLight.shadow.camera.far = 2500; // default
 
     //Fog
-    scene.fog = new THREE.FogExp2(0x000000, 0.00025);
+    //scene.fog = new THREE.FogExp2(0x000000, 0.00025);
 
 
     //Audio
