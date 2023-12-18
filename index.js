@@ -277,7 +277,7 @@ function init() {
 
     //Add terrain
     let terrainModel;
-    modelLoader.load(`${basePath}/public/models/hanid-terrain-v2.glb`, (gltf) => {
+    modelLoader.load(`${basePath}/public/models/hanid-terrain-v3.glb`, (gltf) => {
         terrainModel = gltf.scene;
         const group = new THREE.Group();
         group.name = "Terrain";
