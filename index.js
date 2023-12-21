@@ -548,6 +548,7 @@ const setSideBar = (data) => {
 
     const link = document.getElementById("sidebar-content-link");
     if (data.link) {
+        link.innerHTML = "Узнать больше...";
         link.setAttribute("href", data.link);
     } else {
         link.innerHTML = "";
