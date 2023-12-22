@@ -135,6 +135,28 @@ select {
     margin-bottom: 32px;
 }
 
+#sidebar-content h1 {
+    color: #c8aa6e;
+}
+
+#sidebar-content h1:before {
+    background: #fff0;
+    font-size: 24px;
+    content: '◈';
+    padding: 0 4px;
+    position: relative;
+}
+
+#sidebar-content-info {
+    color: #a09b8c;
+    font-style: italic;
+}
+
+#sidebar-content-info:before {
+    background: #fff0;
+    content: 'Регион: ';
+}
+
 #sidebar-content-text {
     font-size: 16px;
     line-height: 1.8;
@@ -150,17 +172,7 @@ select {
 }
 
 
-#sidebar-content h1 {
-    color: #c8aa6e;
-}
 
-#sidebar-content h1:before {
-    background: #fff0;
-    font-size: 24px;
-    content: '◈';
-    padding: 0 4px;
-    position: relative;
-}
 
 
 
@@ -321,6 +333,4 @@ br {
     #sidebar-content h1 {
         font-size: 1.5 em;
     }
-
-
 }

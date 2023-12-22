@@ -543,6 +543,9 @@ const setSideBar = (data) => {
     const header = document.getElementById("sidebar-content-header");
     header.innerHTML = data.name;
 
+    const info = document.getElementById("sidebar-content-info");
+    info.innerHTML = data.province;
+
     const text = document.getElementById("sidebar-content-text");
     text.innerHTML = data.description;
 
