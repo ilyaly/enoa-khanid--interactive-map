@@ -267,7 +267,7 @@
         "province": "Дангун",
         "link": null,
         "sound": "oud-lute.ogg",
-        "model": null,
+        "model": "kartag-library.glb",
         "position": [
             569,
             -60,
