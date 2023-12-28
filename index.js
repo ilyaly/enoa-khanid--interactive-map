@@ -386,43 +386,45 @@ function init() {
 
 
     // Add places
-    // As we use one model for all points of interest it is better to load model once 
-    // and than use just copy it
-    let placeModel;
-    modelLoader.load(`${basePath}/public/models/poi-flag.glb`, (gltf) => {
-        placeModel = gltf.scene;
-        const placesRequest = new Request(`${basePath}/public/places.json`);
-        fetch(placesRequest)
-            .then((response) => response.json())
-            .then((places) => {
-                for (const place of places) {
-                    const group = new THREE.Group();
-                    group.name = place.name;
-                    group.userData = {
-                        "name": place.name,
-                        "punjabi": place.punjabi,
-                        "description": place.description,
-                        "type": place.type,
-                        "province": place.province,
-                        "link": place.link,
-                    };
-                    group.position.set(
-                        place.position[0],
-                        place.position[1],
-                        place.position[2]
-                    );
-                    group.rotation.set(
-                        place.rotation[0],
-                        place.rotation[1] += Math.random() * 2,
-                        place.rotation[2]
-                    );
-                    group.scale.set(
-                        place.scale[0],
-                        place.scale[1],
-                        place.scale[2]
-                    );
+const placesRequest = new Request(`${basePath}public/data/places.json`);
+fetch(placesRequest)
+    .then((response) => response.json())
+    .then((places) => {
+        for (const place of places) {
+            //Creat city group
+            const group = new THREE.Group();
+            group.name = place.name;
+            group.userData = {
+                "name": place.name,
+                "punjabi": place.punjabi,
+                "description": place.description,
+                "type": place.type,
+                "province": place.province,
+                "link": place.link,
+            }
 
-                    group.add(placeModel.clone());
+            group.position.set(
+                place.position[0],
+                place.position[1],
+                place.position[2]
+            );
+            group.rotation.set(
+                place.rotation[0],
+                place.rotation[1] + Math.random() * 10,
+                place.rotation[2]
+            );
+            group.scale.set(
+                place.scale[0],
+                place.scale[1],
+                place.scale[2]
+            );
+
+            //Load model
+            if (place.model) {
+                let model;
+                modelLoader.load(`${basePath}/public/models/${place.model}`, (gltf) => {
+                    model = gltf.scene;
+                    group.add(model);
                     //This is for fast picking
                     const box = new THREE.Box3();
                     box.setFromObject(group);
@@ -431,17 +433,42 @@ function init() {
                         "min": box.min,
                         "max": box.max
                     });
-                    scene.add(group);
+                });
+            } else {
+                let model;
+                modelLoader.load(`${basePath}/public/models/placeholder-flag.glb`, (gltf) => {
+                    model = gltf.scene;
+                    group.add(model);
+                    //This is for fast picking
+                    const box = new THREE.Box3();
+                    box.setFromObject(group);
+                    objectSnapshots.push({
+                        "id": group.id,
+                        "min": box.min,
+                        "max": box.max
+                    });
+                });
+            }
 
-                };
+            // Load sound
+            if (place.sound) {
+                const sound = new THREE.PositionalAudio(audioListener);
 
+                audioLoader.load(`${basePath}/public/sounds/${place.sound}`, function(buffer) {
+                    sound.setBuffer(buffer);
+                    sound.setLoop(true);
+                    sound.setRolloffFactor(4);
+                    sound.setRefDistance(500);
+                    sound.setVolume(0.5);
+                    group.add(sound);
+                });
+            };
 
-            })
+            scene.add(group);
+        };
+    })
 
-            .catch(console.error);
-    });
-
-}
+    .catch(console.error);
 
 //Renders and animation
 
