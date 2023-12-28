@@ -467,8 +467,8 @@ fetch(placesRequest)
             scene.add(group);
         };
     })
-
     .catch(console.error);
+}
 
 //Renders and animation
 
@@ -583,9 +583,7 @@ const setSideBar = (data) => {
     } else {
         link.innerHTML = "";
     }
-
-
-}
+};
 
 const resetSideBar = () => {
     const sidebar = document.getElementById('sidebar');
