@@ -386,7 +386,7 @@ function init() {
 
 
     // Add places
-    const placesRequest = new Request(`${basePath}/public/data/places.json`);
+    const placesRequest = new Request(`${basePath}/public/places.json`);
     fetch(placesRequest)
         .then((response) => response.json())
         .then((places) => {
