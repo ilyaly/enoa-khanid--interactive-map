@@ -39,7 +39,7 @@ let isSceneLoaded = false;
 const audioContext = new(window.AudioContext || window.webkitAudioContext)();
 
 // Base path
-const basePath = 'https://ilyaly.github.io/enoa-khanid-interactive-map';
+const basePath = 'https://ilyaly.github.io/enoa.khanid.interactive.map';
 
 //Object IDs for picking
 const objectSnapshots = [];
